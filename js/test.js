@@ -20,7 +20,7 @@ document.querySelector(".control-buttons span").onclick = function () {
     // Remove Splash Screen
     document.querySelector(".control-buttons").remove();
     document.getElementById('open').play();
-    document.getElementById('open').volume = 0.2;
+    document.getElementById('open').volume = 0.1;
 };
 //effect duration 
 let duration = 1000;
@@ -53,6 +53,13 @@ function flipBlock(selectedBlock) {
         //check matching block function
         checkMatchedBlocks(allflippedBlocks[0], allflippedBlocks[1])
     }
+    //collect all matched cards  
+    let allmatchedBlocks = blocks.filter(flippedBlock => flippedBlock.classList.contains("has-match"))
+    //if finished game
+    if (allmatchedBlocks.length === 18) {
+        document.getElementById('finish').play();
+    }
+
 }
 //function stop clicking
 function stopClicking() {
@@ -115,10 +122,13 @@ function shuffle(array) {
     return array;
 }
 
+// function game over
+
 function stop ()
 {
-    
     if (parseInt(triesElement.innerHTML) == 10){
         document.querySelector(".over").style.display="block";
     }
 }
+
+
